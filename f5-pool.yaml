@@ -15,7 +15,7 @@
       bigip_pool:
         provider: "{{ provider }}"
         lb_method: least-connections-member
-        name: web143-NEW
+        name: web143-NEW-1
         partition: GREEN
         state: present
         service_down_action: reset
