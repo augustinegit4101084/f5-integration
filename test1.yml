@@ -14,7 +14,7 @@
       bigip_pool:
         provider: "{{ provider }}"
         lb_method: ratio-member
-        name: web143
+        name: web143-test
         slow_ramp_time: 120
       delegate_to: localhost
     - name: Add members to pool
@@ -23,7 +23,7 @@
         description: webserver {{ item.name }}
         host: "{{ item.host }}"
         name: "{{ item.name }}"
-        pool: web
+        pool: web143-test
         port: 80
       with_items:
         - host: 10.10.10.50
