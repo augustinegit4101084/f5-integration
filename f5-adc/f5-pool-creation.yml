@@ -1,0 +1,29 @@
+---
+- name: Create a VIP, pool and pool members
+  hosts: f5lb
+  connection: local
+  gather_facts: False
+  vars:
+    provider:
+      password: August1!0
+      server: 192.168.1.12
+      user: root
+      validate_certs: no
+      server_port: 443
+  tasks:
+    - name: Create a pool with LB PARTITION PRIORITY GROUP ACTIVATION
+      bigip_pool:
+        provider: "{{ provider }}"
+        lb_method: least-connections-member
+        name: web143-NEW-F5-Branch
+        partition: GREEN
+        state: present
+        service_down_action: reset
+        priority_group_activation: 1
+        slow_ramp_time: 120
+      delegate_to: localhost
+  handlers:
+    - name: Save the running configuration to disk
+      bigip_config:
+        save: yes
+        provider: "{{ provider }}"
