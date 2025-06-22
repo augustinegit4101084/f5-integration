@@ -1,0 +1,27 @@
+---
+- name: Configure Network Objects
+  hosts: "palo"
+  connection: local
+  vars:
+    device:
+      ip_address: "192.168.1.8"
+      username: "admin"
+      password: "August1!0"
+  collections:
+    - paloaltonetworks.panos
+  tasks:
+     - name: Create Server Object
+       panos_address_object:
+         provider: '{{ device }}'
+         name: 'server2'
+         value: '172.16.1.20'
+         description: 'vmware'
+     - name: Create Users Object
+       panos_address_object:
+         provider: '{{ device }}'
+         name: 'users-subnet-2'
+         value: '10.10.20.0/24'
+         description: 'users subnet'
+     - name: Commit Candidate Configs On Firewall
+       paloaltonetworks.panos.panos_commit_firewall:
+           provider: '{{ device }}'
