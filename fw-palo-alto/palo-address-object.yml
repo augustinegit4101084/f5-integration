@@ -1,5 +1,5 @@
 ---
-- name: Configure Network Objects
+- name: Configure Network 2 Objects
   hosts: "palo"
   connection: local
   vars:
