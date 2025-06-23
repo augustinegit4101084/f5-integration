@@ -1,5 +1,5 @@
 ---
-- name: Configure Network 2 Objects
+- name: Configure Network 2 Objects for Firewall
   hosts: "palo"
   connection: local
   vars:
